@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%; /* #0F172A equivalent */
+    --foreground: 210 40% 98%;
+    
+    --card: 217 33% 17%; /* #1E293B */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 199 89% 48%; /* #0EA5E9 */
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#0F172A] text-white font-sans antialiased min-h-screen;
+  }
+}
+
+/* Custom layout utilities */
+.admin-sidebar {
+  @apply bg-[#111827] border-r border-[#334155];
+}
+
+.admin-card {
+  @apply bg-[#1E293B] border border-[#334155] rounded-[16px] shadow-sm;
+}
+
+.admin-input {
+  @apply bg-[#0F172A] border border-[#334155] rounded-[12px] text-white focus:outline-none focus:ring-2 focus:ring-[#0EA5E9];
+}
+
+.admin-button {
+  @apply bg-[#0EA5E9] hover:bg-[#0284C7] text-white font-medium rounded-[12px] px-4 py-2 transition-colors flex items-center justify-center gap-2;
+}
+
+.admin-button-outline {
+  @apply border border-[#334155] hover:bg-[#334155] text-white font-medium rounded-[12px] px-4 py-2 transition-colors flex items-center justify-center gap-2;
+}
+
+/* Score display specific */
+.score-font {
+  font-family: 'Outfit', sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+
+/* ─── Ball Indicators ───────────────────────────────────────────────────────── */
+.ball {
+  @apply w-7 h-7 rounded-full inline-flex items-center justify-center text-[11px] font-bold shrink-0;
+}
+.ball-0  { @apply bg-[#334155] text-[#94A3B8]; }
+.ball-1  { @apply bg-[#475569] text-white; }
+.ball-2  { @apply bg-[#064E3B] text-[#34D399]; }
+.ball-3  { @apply bg-[#065F46] text-[#6EE7B7]; }
+.ball-4  { @apply bg-[#0EA5E9] text-white; }
+.ball-6  { @apply bg-[#F59E0B] text-white; }
+.ball-W  { @apply bg-[#EF4444] text-white; }
+.ball-Wd { @apply bg-[#8B5CF6] text-white; }
+.ball-Nb { @apply bg-[#F59E0B] text-white; }
+
+/* ─── Print Styles for PDF Scorecard ────────────────────────────────────────── */
+@media print {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --border: 0 0% 89.8%;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .admin-sidebar, 
+  .admin-header,
+  .print\:hidden {
+    display: none !important;
+  }
+  .admin-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .card, .admin-card {
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    background-color: white !important;
+    color: black !important;
+  }
+  table th {
+    background-color: #f3f4f6 !important;
+    color: black !important;
+  }
+  table td {
+    color: black !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  /* Remove glowing text in print */
+  .text-white {
+    color: black !important;
+  }
+  .bg-\[\#1E293B\], .bg-\[\#0F172A\] {
+    background-color: white !important;
+  }
+  [class*="bg-[var(--color-surface"] {
+    background-color: transparent !important;
+  }
+  [class*="text-[var(--color-text"] {
+    color: black !important;
+  }
+  [class*="border-[var(--color-border"] {
+    border-color: #e5e7eb !important;
+  }
+  /* Force tables to look clean */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  th, td {
+    padding: 8px !important;
+    text-align: left;
+  }
+}
