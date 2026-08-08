@@ -188,6 +188,8 @@ model Player {
   teamId       String?
   captainOf    Team[]        @relation("TeamCaptain")
   battingCards BattingCard[]
+  battingCardsAsBowler  BattingCard[] @relation("BattingCardBowler")
+  battingCardsAsFielder BattingCard[] @relation("BattingCardFielder")
   bowlingCards BowlingCard[]
   
   // Guest support
@@ -382,7 +384,9 @@ model BattingCard {
   dismissalType WicketType?
   dismissalText String?
   bowlerId      String?
+  bowler        Player?  @relation("BattingCardBowler", fields: [bowlerId], references: [id])
   fielderId     String?
+  fielder       Player?  @relation("BattingCardFielder", fields: [fielderId], references: [id])
   didNotBat     Boolean  @default(false)
 
   @@unique([inningsId, playerId])

@@ -12,7 +12,7 @@ const server = http.createServer(app);
 // Initialize Socket.io
 initializeSocket(server);
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen({ port: PORT, host: '0.0.0.0' }, () => {
   console.log(`🏏 CricRS Backend running on port ${PORT}`);
   console.log(`📡 Socket.io ready`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
