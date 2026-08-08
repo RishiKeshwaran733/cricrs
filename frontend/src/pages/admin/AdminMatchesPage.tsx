@@ -59,6 +59,9 @@ export default function AdminMatchesPage() {
       setShowModal(false);
     } catch (e: any) { toast.error(e?.response?.data?.message || 'Failed'); }
   };
+  const openEdit = (match: any) => {
+    toast.error('Edit functionality coming soon');
+  };
 
   const handleStartMatch = async () => {
     if (!startForm.battingTeamId || !startForm.bowlingTeamId) { toast.error('Select batting and bowling teams'); return; }

@@ -23,8 +23,10 @@ export default function AdminReportsPage() {
   const matches = matchData?.matches || [];
   const players = playerData?.players || [];
 
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   const handleExportPlayers = (format: string) => {
-    let url = `http://localhost:4000/api/reports/players?format=${format}`;
+    let url = `${API_URL}/api/reports/players?format=${format}`;
     if (selectedPlayerIds.length > 0) {
       url += `&playerIds=${selectedPlayerIds.join(',')}`;
     }
@@ -32,7 +34,7 @@ export default function AdminReportsPage() {
   };
 
   const handleExportMatch = (endpoint: string, format: string) => {
-    window.open(`http://localhost:4000/api/reports/${endpoint}?format=${format}`, '_blank');
+    window.open(`${API_URL}/api/reports/${endpoint}?format=${format}`, '_blank');
   };
 
   const togglePlayer = (id: string) => {
