@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="admin@cricrs.com"
+                  placeholder="Enter your email"
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30 transition-colors"
                 />
               </div>
@@ -104,9 +104,6 @@ export default function AdminLoginPage() {
             </motion.button>
           </form>
 
-          <p className="text-xs text-center text-[var(--color-text-muted)] mt-6">
-            Default credentials: admin@cricrs.com / Admin@123
-          </p>
 
           <div className="mt-6 pt-6 border-t border-[var(--color-border)] text-center">
             <p className="text-sm text-[var(--color-text-muted)]">
